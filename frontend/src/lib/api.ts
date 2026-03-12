@@ -64,6 +64,7 @@ export const appointmentsAPI = {
 export const foodsAPI = {
   getAll: (params?: { search?: string; dosha?: string; effect?: string }) => api.get('/foods', { params }),
   create: (data: any) => api.post('/foods', data),
+  delete: (id: string) => api.delete(`/foods/${id}`),
 };
 
 // AI

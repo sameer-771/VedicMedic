@@ -23,3 +23,12 @@ exports.create = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+exports.delete = async (req, res) => {
+    try {
+        await FoodDatabase.findByIdAndDelete(req.params.id);
+        res.json({ message: 'Food item deleted' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
