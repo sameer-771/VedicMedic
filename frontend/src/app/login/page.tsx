@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Leaf, Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react';
+import { Leaf, Mail, Lock, ArrowRight, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { authAPI } from '@/lib/api';
 import { setAuth } from '@/lib/auth';
 
@@ -13,6 +13,7 @@ export default function LoginPage() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,9 +66,12 @@ export default function LoginPage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2.5">Password</label>
-              <div className="input-icon-wrapper">
+              <div className="input-icon-wrapper" style={{ position: 'relative' }}>
                 <Lock className="input-icon" />
-                <input type="password" required className="input-field" placeholder="••••••••" value={form.password} onChange={e => setForm({...form, password: e.target.value})} />
+                <input type={showPassword ? 'text' : 'password'} required className="input-field" style={{ paddingRight: '42px' }} placeholder="••••••••" value={form.password} onChange={e => setForm({...form, password: e.target.value})} />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors" style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)' }}>
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
               </div>
             </div>
             <button type="submit" disabled={loading} className="btn-primary w-full flex items-center justify-center gap-2 py-3.5">
