@@ -21,12 +21,12 @@ const doshas = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#0a0f1c]">
+    <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
       {/* Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-amber-500/5 to-transparent blur-3xl" />
-        <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-green-500/5 to-transparent blur-3xl" />
-        <div className="absolute top-[40%] left-[50%] w-[400px] h-[400px] rounded-full bg-gradient-to-br from-blue-500/3 to-transparent blur-3xl" />
+        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-purple-500/8 to-transparent blur-3xl" />
+        <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-amber-500/5 to-transparent blur-3xl" />
+        <div className="absolute top-[40%] left-[50%] w-[400px] h-[400px] rounded-full bg-gradient-to-br from-purple-700/5 to-transparent blur-3xl" />
       </div>
 
       {/* Navbar */}

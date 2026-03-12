@@ -39,18 +39,18 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   };
 
   if (!user) return (
-    <div className="min-h-screen bg-[#0a0f1c] flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--bg-primary)' }}>
       <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-[#0a0f1c] flex">
+    <div className="min-h-screen flex" style={{ background: 'var(--bg-primary)' }}>
       {/* Mobile overlay */}
       {sidebarOpen && <div className="fixed inset-0 bg-black/50 z-30 lg:hidden" onClick={() => setSidebarOpen(false)} />}
 
       {/* Sidebar */}
-      <aside className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-[#0d1321] border-r border-white/5 flex flex-col transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+      <aside className={`fixed lg:static inset-y-0 left-0 z-40 w-64 border-r border-white/5 flex flex-col transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`} style={{ background: 'var(--bg-sidebar)' }}>
         <div className="p-5 flex items-center gap-3 border-b border-white/5">
           <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center">
             <Leaf className="w-5 h-5 text-white" />
@@ -60,7 +60,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           </span>
         </div>
 
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+        <nav className="flex-1 p-4 space-y-1.5 overflow-y-auto">
           {navItems.map((item) => {
             const isActive = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href));
             return (
@@ -92,7 +92,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       {/* Main Content */}
       <main className="flex-1 min-h-screen overflow-auto">
         {/* Top Bar */}
-        <header className="sticky top-0 z-20 bg-[#0a0f1c]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex items-center justify-between">
+        <header className="sticky top-0 z-20 backdrop-blur-xl border-b border-white/5 px-8 py-5 flex items-center justify-between" style={{ background: 'rgba(26, 10, 46, 0.8)' }}>
           <button className="lg:hidden p-2 rounded-lg hover:bg-white/5" onClick={() => setSidebarOpen(!sidebarOpen)}>
             {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -107,7 +107,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         </header>
 
         {/* Page Content */}
-        <div className="p-6">
+        <div className="p-8">
           {children}
         </div>
       </main>

@@ -9,14 +9,15 @@
   --kapha-light: #86efac;
   --gold: #d4a853;
   --gold-light: #f0d98d;
-  --bg-primary: #0a0f1c;
-  --bg-secondary: #111827;
-  --bg-card: rgba(17, 24, 39, 0.7);
+  --bg-primary: #1a0a2e;
+  --bg-secondary: #1f1035;
+  --bg-card: rgba(30, 15, 55, 0.7);
+  --bg-sidebar: #150826;
   --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
+  --text-secondary: #a5a3c7;
   --border-color: rgba(255, 255, 255, 0.08);
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.08);
   --accent-gradient: linear-gradient(135deg, #d4a853 0%, #b8860b 50%, #d4a853 100%);
 }
 
@@ -45,8 +46,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #475569; }
+::-webkit-scrollbar-thumb { background: #4a3565; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #5c4477; }
 
 /* Glass Card */
 .glass-card {
@@ -58,8 +59,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-card-hover:hover {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.07);
   transform: translateY(-2px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
@@ -101,10 +102,10 @@ h1, h2, h3, h4, h5, h6 {
 /* Buttons */
 .btn-primary {
   background: var(--accent-gradient);
-  color: #0a0f1c;
+  color: #1a0a2e;
   font-weight: 600;
-  padding: 0.625rem 1.5rem;
-  border-radius: 10px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -120,8 +121,8 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-primary);
   font-weight: 500;
-  padding: 0.625rem 1.5rem;
-  border-radius: 10px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 12px;
   border: 1px solid var(--border-color);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -135,33 +136,73 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Form Inputs */
 .input-field {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 0.625rem 1rem;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
   color: var(--text-primary);
   font-size: 0.875rem;
   transition: all 0.3s ease;
   width: 100%;
   outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .input-field:focus {
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.1);
+  box-shadow: 0 0 0 3px rgba(212, 168, 83, 0.15);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .input-field::placeholder {
-  color: #4b5563;
+  color: #6b6b8d;
+}
+
+/* Fix select dropdown styling */
+select.input-field {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+select.input-field option {
+  background: #1f1035;
+  color: #f1f5f9;
+  padding: 8px 12px;
+}
+
+/* Input with icon wrapper */
+.input-icon-wrapper {
+  position: relative;
+}
+
+.input-icon-wrapper .input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #6b6b8d;
+  pointer-events: none;
+}
+
+.input-icon-wrapper .input-field {
+  padding-left: 42px;
 }
 
 /* Sidebar */
 .sidebar-link {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.625rem 1rem;
-  border-radius: 10px;
+  gap: 0.875rem;
+  padding: 0.75rem 1.125rem;
+  border-radius: 12px;
   color: var(--text-secondary);
   transition: all 0.2s ease;
   font-size: 0.875rem;
@@ -175,7 +216,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .sidebar-link.active {
-  background: rgba(212, 168, 83, 0.1);
+  background: rgba(212, 168, 83, 0.12);
   color: var(--gold);
   border: 1px solid rgba(212, 168, 83, 0.15);
 }
@@ -236,7 +277,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .data-table th {
   text-align: left;
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-secondary);
@@ -246,7 +287,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .data-table td {
-  padding: 0.75rem 1rem;
+  padding: 1rem 1.25rem;
   font-size: 0.875rem;
   border-bottom: 1px solid var(--border-color);
 }
@@ -257,16 +298,16 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Meal Card */
 .meal-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 1.25rem;
+  border-radius: 14px;
+  padding: 1.5rem;
   transition: all 0.3s ease;
 }
 
 .meal-card:hover {
   border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* Responsive */

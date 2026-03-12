@@ -139,7 +139,7 @@ export default function PatientsPage() {
           <motion.div className="modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <motion.div className="glass-card p-6 w-full max-w-lg mx-4 max-h-[85vh] overflow-y-auto"
               initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
-              style={{ background: '#111827' }}>
+              style={{ background: '#1f1035' }}>
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-white font-['Outfit']">{editId ? 'Edit Patient' : 'Add New Patient'}</h2>
                 <button onClick={() => setShowModal(false)} className="p-2 rounded-lg hover:bg-white/5"><X className="w-5 h-5" /></button>
