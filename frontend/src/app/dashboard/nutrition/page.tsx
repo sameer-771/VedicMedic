@@ -47,7 +47,7 @@ export default function NutritionPage() {
     { name: 'Fat', value: nutrients.fat, max: 80, color: '#ef4444', unit: 'g' },
   ] : [];
 
-  if (loading) return <div className="flex items-center justify-center h-64"><div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" /></div>;
+  if (loading) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 256 }}><div style={{ width: 32, height: 32, border: '2px solid #f59e0b', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} /></div>;
 
   if (!latestPlan) return (
     <div className="glass-card p-12 text-center">
@@ -57,26 +57,26 @@ export default function NutritionPage() {
   );
 
   return (
-    <div className="space-y-6">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
       <div>
-        <h1 className="text-2xl font-bold text-white font-['Outfit']">Nutrient Analysis Dashboard</h1>
-        <p className="text-sm text-gray-400 mt-1">Visual analytics of nutritional intake from diet plans</p>
+        <h1 style={{ fontSize: 26, fontWeight: 700, color: 'white', fontFamily: 'Outfit, sans-serif' }}>Nutrient Analysis Dashboard</h1>
+        <p style={{ fontSize: 14, color: '#94a3b8', marginTop: 6 }}>Visual analytics of nutritional intake from diet plans</p>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 20 }}>
         {dailyProgress.map((item, i) => (
-          <motion.div key={i} className="glass-card p-4 text-center" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
-            <p className="text-2xl font-bold" style={{ color: item.color }}>{item.value}{item.unit || ''}</p>
-            <p className="text-xs text-gray-400 mt-1">{item.name}</p>
+          <motion.div key={i} className="glass-card" style={{ padding: 20, textAlign: 'center' }} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
+            <p style={{ fontSize: 26, fontWeight: 700, color: item.color }}>{item.value}{item.unit || ''}</p>
+            <p style={{ fontSize: 13, color: '#94a3b8', marginTop: 4 }}>{item.name}</p>
           </motion.div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
         {/* Pie Chart */}
-        <motion.div className="glass-card p-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
-          <h3 className="text-lg font-semibold text-white font-['Outfit'] mb-4 flex items-center gap-2">
+        <motion.div className="glass-card" style={{ padding: 28 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+          <h3 style={{ fontSize: 16, fontWeight: 600, color: 'white', fontFamily: 'Outfit, sans-serif', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 10 }}>
             <ChartPie className="w-5 h-5 text-amber-400" /> Macronutrient Breakdown
           </h3>
           <div className="flex items-center justify-center">
@@ -95,8 +95,8 @@ export default function NutritionPage() {
         </motion.div>
 
         {/* Weekly Trend */}
-        <motion.div className="glass-card p-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
-          <h3 className="text-lg font-semibold text-white font-['Outfit'] mb-4 flex items-center gap-2">
+        <motion.div className="glass-card" style={{ padding: 28 }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+          <h3 style={{ fontSize: 16, fontWeight: 600, color: 'white', fontFamily: 'Outfit, sans-serif', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 10 }}>
             <TrendingUp className="w-5 h-5 text-green-400" /> Weekly Nutrition Trend
           </h3>
           <ResponsiveContainer width="100%" height={280}>
@@ -115,11 +115,11 @@ export default function NutritionPage() {
       </div>
 
       {/* Daily Intake Progress Bars */}
-      <motion.div className="glass-card p-6" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-        <h3 className="text-lg font-semibold text-white font-['Outfit'] mb-6 flex items-center gap-2">
-          <BarChart3 className="w-5 h-5 text-purple-400" /> Daily Intake Progress
+      <motion.div className="glass-card" style={{ padding: 28 }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
+        <h3 style={{ fontSize: 16, fontWeight: 600, color: 'white', fontFamily: 'Outfit, sans-serif', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 10 }}>
+          <BarChart3 style={{ width: 20, height: 20, color: '#a855f7' }} /> Daily Intake Progress
         </h3>
-        <div className="space-y-5">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
           {dailyProgress.map((item, i) => {
             const pct = Math.min(Math.round((item.value / item.max) * 100), 100);
             return (

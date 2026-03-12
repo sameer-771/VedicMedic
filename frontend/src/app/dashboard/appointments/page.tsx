@@ -56,35 +56,35 @@ export default function AppointmentsPage() {
   const upcoming = appointments.filter(a => a.status === 'Scheduled');
   const completed = appointments.filter(a => a.status === 'Completed');
 
-  if (loading) return <div className="flex items-center justify-center h-64"><div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" /></div>;
+  if (loading) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 256 }}><div style={{ width: 32, height: 32, border: '2px solid #f59e0b', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} /></div>;
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
-          <h1 className="text-2xl font-bold text-white font-['Outfit']">Appointment Scheduler</h1>
-          <p className="text-sm text-gray-400 mt-1">{upcoming.length} upcoming · {completed.length} completed</p>
+          <h1 style={{ fontSize: 26, fontWeight: 700, color: 'white', fontFamily: 'Outfit, sans-serif' }}>Appointment Scheduler</h1>
+          <p style={{ fontSize: 14, color: '#94a3b8', marginTop: 6 }}>{upcoming.length} upcoming · {completed.length} completed</p>
         </div>
         <button onClick={() => { setEditId(null); setForm({ patientId: '', date: '', time: '', notes: '', status: 'Scheduled' }); setShowModal(true); }}
-          className="btn-primary flex items-center gap-2">
-          <Plus className="w-4 h-4" /> Schedule Appointment
+          className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Plus style={{ width: 16, height: 16 }} /> Schedule Appointment
         </button>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
         {[
           { label: 'Scheduled', count: upcoming.length, icon: Clock, color: '#3b82f6' },
           { label: 'Completed', count: completed.length, icon: CheckCircle, color: '#22c55e' },
           { label: 'Cancelled', count: appointments.filter(a => a.status === 'Cancelled').length, icon: XCircle, color: '#ef4444' },
         ].map((s, i) => (
-          <div key={i} className="glass-card p-5 flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: `${s.color}15` }}>
-              <s.icon className="w-5 h-5" style={{ color: s.color }} />
+          <div key={i} className="glass-card" style={{ padding: 24, display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div style={{ width: 44, height: 44, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', background: `${s.color}18` }}>
+              <s.icon style={{ width: 22, height: 22, color: s.color }} />
             </div>
             <div>
-              <p className="text-xl font-bold text-white">{s.count}</p>
-              <p className="text-xs text-gray-400">{s.label}</p>
+              <p style={{ fontSize: 24, fontWeight: 700, color: 'white' }}>{s.count}</p>
+              <p style={{ fontSize: 13, color: '#94a3b8' }}>{s.label}</p>
             </div>
           </div>
         ))}
@@ -135,8 +135,8 @@ export default function AppointmentsPage() {
       <AnimatePresence>
         {showModal && (
           <motion.div className="modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <motion.div className="glass-card p-6 w-full max-w-md mx-4" initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
-              style={{ background: '#1f1035' }}>
+            <motion.div className="glass-card" style={{ padding: 28, width: '100%', maxWidth: 480, margin: '0 16px', background: '#1f1035' }}
+              initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}>
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-white font-['Outfit']">{editId ? 'Edit' : 'Schedule'} Appointment</h2>
                 <button onClick={() => setShowModal(false)} className="p-2 rounded-lg hover:bg-white/5"><X className="w-5 h-5" /></button>

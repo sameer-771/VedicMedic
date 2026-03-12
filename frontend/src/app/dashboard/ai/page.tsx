@@ -29,19 +29,18 @@ export default function AIPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
       <div>
-        <h1 className="text-2xl font-bold text-white font-['Outfit']">AI Diet Recommendation</h1>
-        <p className="text-sm text-gray-400 mt-1">Get intelligent Ayurvedic diet recommendations powered by AI</p>
+        <h1 style={{ fontSize: 26, fontWeight: 700, color: 'white', fontFamily: 'Outfit, sans-serif' }}>AI Diet Recommendation</h1>
+        <p style={{ fontSize: 14, color: '#94a3b8', marginTop: 6 }}>Get intelligent Ayurvedic diet recommendations powered by AI</p>
       </div>
 
-      {/* Input Form */}
-      <div className="glass-card p-6">
-        <h3 className="text-lg font-semibold text-white font-['Outfit'] mb-4 flex items-center gap-2">
-          <Brain className="w-5 h-5 text-amber-400" /> Configure Recommendation
+      <div className="glass-card" style={{ padding: 28 }}>
+        <h3 style={{ fontSize: 16, fontWeight: 600, color: 'white', fontFamily: 'Outfit, sans-serif', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 10 }}>
+          <Brain style={{ width: 20, height: 20, color: '#f59e0b' }} /> Configure Recommendation
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
           {/* Dosha Type */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-3">Dosha Type</label>
@@ -101,18 +100,17 @@ export default function AIPage() {
       {/* Results */}
       <AnimatePresence>
         {result && (
-          <motion.div className="space-y-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-            {/* Header */}
-            <div className="glass-card p-6 bg-gradient-to-r from-amber-500/5 to-purple-500/5">
-              <h3 className="text-lg font-semibold text-white font-['Outfit'] mb-2 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-amber-400" /> AI Recommendation Result
+          <motion.div style={{ display: 'flex', flexDirection: 'column', gap: 20 }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+            <div className="glass-card" style={{ padding: 28 }}>
+              <h3 style={{ fontSize: 16, fontWeight: 600, color: 'white', fontFamily: 'Outfit, sans-serif', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 10 }}>
+                <Sparkles style={{ width: 20, height: 20, color: '#f59e0b' }} /> AI Recommendation Result
               </h3>
-              <p className="text-sm text-gray-400">{result.notes}</p>
+              <p style={{ fontSize: 14, color: '#94a3b8' }}>{result.notes}</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
               {/* Recommended Foods */}
-              <div className="glass-card p-6">
+              <div className="glass-card" style={{ padding: 28 }}>
                 <h4 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-400" /> Recommended Foods
                 </h4>
@@ -128,7 +126,7 @@ export default function AIPage() {
               </div>
 
               {/* Foods to Avoid */}
-              <div className="glass-card p-6">
+              <div className="glass-card" style={{ padding: 28 }}>
                 <h4 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
                   <XCircle className="w-5 h-5 text-red-400" /> Foods to Avoid
                 </h4>
@@ -146,11 +144,11 @@ export default function AIPage() {
 
             {/* Sample Meal Plan */}
             {result.mealPlan && (
-              <div className="glass-card p-6">
+              <div className="glass-card" style={{ padding: 28 }}>
                 <h4 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
                   <Utensils className="w-5 h-5 text-amber-400" /> Sample Meal Plan
                 </h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                   {[
                     { title: '🌅 Breakfast', content: result.mealPlan.breakfast },
                     { title: '☀️ Lunch', content: result.mealPlan.lunch },

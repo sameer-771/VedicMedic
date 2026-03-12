@@ -47,18 +47,18 @@ export default function DietPage() {
   ] : [];
 
   return (
-    <div className="space-y-6">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
       <div>
-        <h1 className="text-2xl font-bold text-white font-['Outfit']">Ayurvedic Diet Plan Builder</h1>
-        <p className="text-sm text-gray-400 mt-1">Generate personalized diet plans based on Dosha type and season</p>
+        <h1 style={{ fontSize: 26, fontWeight: 700, color: 'white', fontFamily: 'Outfit, sans-serif' }}>Ayurvedic Diet Plan Builder</h1>
+        <p style={{ fontSize: 14, color: '#94a3b8', marginTop: 6 }}>Generate personalized diet plans based on Dosha type and season</p>
       </div>
 
       {/* Generator */}
-      <div className="glass-card p-6">
-        <h3 className="text-lg font-semibold text-white font-['Outfit'] mb-4 flex items-center gap-2">
-          <ChefHat className="w-5 h-5 text-amber-400" /> Generate Diet Plan
+      <div className="glass-card" style={{ padding: 28 }}>
+        <h3 style={{ fontSize: 16, fontWeight: 600, color: 'white', fontFamily: 'Outfit, sans-serif', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 10 }}>
+          <ChefHat style={{ width: 20, height: 20, color: '#f59e0b' }} /> Generate Diet Plan
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1.5">Select Patient</label>
             <select className="input-field" value={selectedPatient} onChange={e => setSelectedPatient(e.target.value)}>
@@ -85,31 +85,29 @@ export default function DietPage() {
 
       {/* Diet Plan Display */}
       {dietPlan && (
-        <motion.div className="space-y-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          {/* Summary */}
-          <div className="glass-card p-6 bg-gradient-to-r from-amber-500/5 to-green-500/5">
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+        <motion.div style={{ display: 'flex', flexDirection: 'column', gap: 20 }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="glass-card" style={{ padding: 28 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 16, marginBottom: 20 }}>
               <div>
-                <h3 className="text-lg font-semibold text-white font-['Outfit']">Diet Plan Generated</h3>
-                <p className="text-sm text-gray-400 mt-1">{dietPlan.notes}</p>
+                <h3 style={{ fontSize: 16, fontWeight: 600, color: 'white', fontFamily: 'Outfit, sans-serif' }}>Diet Plan Generated</h3>
+                <p style={{ fontSize: 14, color: '#94a3b8', marginTop: 6 }}>{dietPlan.notes}</p>
               </div>
-              <div className="flex gap-3 text-center">
+              <div style={{ display: 'flex', gap: 12, textAlign: 'center' }}>
                 {[
                   { label: 'Calories', value: dietPlan.totalNutrients?.calories, color: '#f59e0b' },
                   { label: 'Protein', value: `${dietPlan.totalNutrients?.protein}g`, color: '#3b82f6' },
                   { label: 'Fiber', value: `${dietPlan.totalNutrients?.fiber}g`, color: '#22c55e' },
                 ].map((n, i) => (
-                  <div key={i} className="px-4 py-2 rounded-xl" style={{ background: `${n.color}10` }}>
-                    <p className="text-lg font-bold" style={{ color: n.color }}>{n.value}</p>
-                    <p className="text-xs text-gray-400">{n.label}</p>
+                  <div key={i} style={{ padding: '10px 18px', borderRadius: 12, background: `${n.color}10` }}>
+                    <p style={{ fontSize: 18, fontWeight: 700, color: n.color }}>{n.value}</p>
+                    <p style={{ fontSize: 12, color: '#94a3b8' }}>{n.label}</p>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Meals */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
             {mealSections.map((meal, i) => (
               <motion.div key={i} className="meal-card" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
                 <h4 className="text-base font-semibold text-white mb-3 flex items-center gap-2">
@@ -140,11 +138,11 @@ export default function DietPage() {
 
       {/* Recent Plans */}
       {allPlans.length > 0 && (
-        <div className="glass-card p-6">
-          <h3 className="text-lg font-semibold text-white font-['Outfit'] mb-4 flex items-center gap-2">
-            <Utensils className="w-5 h-5 text-green-400" /> Recent Diet Plans
+      <div className="glass-card" style={{ padding: 28 }}>
+          <h3 style={{ fontSize: 16, fontWeight: 600, color: 'white', fontFamily: 'Outfit, sans-serif', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 10 }}>
+            <Utensils style={{ width: 20, height: 20, color: '#4ade80' }} /> Recent Diet Plans
           </h3>
-          <div className="space-y-2">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {allPlans.slice(0, 5).map((plan, i) => (
               <div key={i} className="flex items-center justify-between p-3 rounded-lg hover:bg-white/3 transition-colors cursor-pointer"
                 onClick={() => setDietPlan(plan)}>

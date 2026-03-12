@@ -68,62 +68,60 @@ export default function PatientsPage() {
 
   const filtered = patients.filter(p => p.name.toLowerCase().includes(search.toLowerCase()) || p.doshaType.toLowerCase().includes(search.toLowerCase()));
 
-  if (loading) return <div className="flex items-center justify-center h-64"><div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" /></div>;
+  if (loading) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 256 }}><div style={{ width: 32, height: 32, border: '2px solid #f59e0b', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} /></div>;
 
   return (
-    <div className="space-y-6">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
-          <h1 className="text-2xl font-bold text-white font-['Outfit']">Patient Records</h1>
-          <p className="text-sm text-gray-400 mt-1">{patients.length} patients registered</p>
+          <h1 style={{ fontSize: 26, fontWeight: 700, color: 'white', fontFamily: 'Outfit, sans-serif' }}>Patient Records</h1>
+          <p style={{ fontSize: 14, color: '#94a3b8', marginTop: 6 }}>{patients.length} patients registered</p>
         </div>
-        <button onClick={() => { setEditId(null); setForm(emptyForm); setShowModal(true); }} className="btn-primary flex items-center gap-2">
-          <Plus className="w-4 h-4" /> Add Patient
+        <button onClick={() => { setEditId(null); setForm(emptyForm); setShowModal(true); }} className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Plus style={{ width: 16, height: 16 }} /> Add Patient
         </button>
       </div>
 
       {/* Search */}
-      <div className="relative max-w-md">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-        <input className="input-field pl-10" placeholder="Search patients by name or dosha..." value={search} onChange={e => setSearch(e.target.value)} />
+      <div className="input-icon-wrapper" style={{ maxWidth: 480 }}>
+        <Search className="input-icon" />
+        <input className="input-field" placeholder="Search patients by name or dosha..." value={search} onChange={e => setSearch(e.target.value)} />
       </div>
 
       {/* Patients Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
         {filtered.map((p, i) => {
           const dColor = doshaColors[p.doshaType?.split('-')[0]] || '#d4a853';
           return (
-            <motion.div key={p._id} className="glass-card glass-card-hover p-5 transition-all duration-300"
+            <motion.div key={p._id} className="glass-card glass-card-hover" style={{ padding: 24, transition: 'all 0.3s' }}
               initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold"
-                    style={{ background: `${dColor}15`, color: dColor }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                  <div style={{ width: 44, height: 44, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700, background: `${dColor}18`, color: dColor }}>
                     {p.name?.[0]}
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-white">{p.name}</h3>
-                    <p className="text-xs text-gray-500">{p.gender} · {p.age} years</p>
+                    <h3 style={{ fontSize: 15, fontWeight: 600, color: 'white' }}>{p.name}</h3>
+                    <p style={{ fontSize: 13, color: '#6b7280' }}>{p.gender} · {p.age} years</p>
                   </div>
                 </div>
-                <div className="flex gap-1">
-                  <button onClick={() => handleEdit(p)} className="p-1.5 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white"><Edit2 className="w-3.5 h-3.5" /></button>
-                  <button onClick={() => handleDelete(p._id)} className="p-1.5 rounded-lg hover:bg-red-500/10 text-gray-400 hover:text-red-400"><Trash2 className="w-3.5 h-3.5" /></button>
+                <div style={{ display: 'flex', gap: 4 }}>
+                  <button onClick={() => handleEdit(p)} style={{ padding: 8, borderRadius: 8, background: 'transparent', border: 'none', color: '#9ca3af', cursor: 'pointer' }}><Edit2 style={{ width: 16, height: 16 }} /></button>
+                  <button onClick={() => handleDelete(p._id)} style={{ padding: 8, borderRadius: 8, background: 'transparent', border: 'none', color: '#9ca3af', cursor: 'pointer' }}><Trash2 style={{ width: 16, height: 16 }} /></button>
                 </div>
               </div>
-              <div className="inline-flex px-2.5 py-1 rounded-md text-xs font-medium mb-3"
-                style={{ background: `${dColor}15`, color: dColor, border: `1px solid ${dColor}30` }}>
+              <div style={{ display: 'inline-flex', padding: '5px 12px', borderRadius: 8, fontSize: 13, fontWeight: 500, marginBottom: 16, background: `${dColor}15`, color: dColor, border: `1px solid ${dColor}30` }}>
                 {p.doshaType}
               </div>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="text-gray-400">Weight: <span className="text-gray-200">{p.weight} kg</span></div>
-                <div className="text-gray-400">Height: <span className="text-gray-200">{p.height} cm</span></div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, fontSize: 13 }}>
+                <div style={{ color: '#94a3b8' }}>Weight: <span style={{ color: '#e2e8f0' }}>{p.weight} kg</span></div>
+                <div style={{ color: '#94a3b8' }}>Height: <span style={{ color: '#e2e8f0' }}>{p.height} cm</span></div>
               </div>
               {p.medicalConditions?.length > 0 && (
-                <div className="mt-3 flex flex-wrap gap-1">
+                <div style={{ marginTop: 14, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                   {p.medicalConditions.slice(0, 3).map((c: string, j: number) => (
-                    <span key={j} className="px-2 py-0.5 rounded text-xs bg-white/5 text-gray-400">{c}</span>
+                    <span key={j} style={{ padding: '3px 10px', borderRadius: 6, fontSize: 12, background: 'rgba(255,255,255,0.05)', color: '#94a3b8' }}>{c}</span>
                   ))}
                 </div>
               )}
@@ -131,21 +129,20 @@ export default function PatientsPage() {
           );
         })}
       </div>
-      {filtered.length === 0 && <div className="glass-card p-12 text-center"><User className="w-12 h-12 text-gray-600 mx-auto mb-3" /><p className="text-gray-400">No patients found</p></div>}
+      {filtered.length === 0 && <div className="glass-card" style={{ padding: 48, textAlign: 'center' }}><User style={{ width: 48, height: 48, color: '#4b5563', margin: '0 auto 12px' }} /><p style={{ color: '#94a3b8' }}>No patients found</p></div>}
 
       {/* Modal */}
       <AnimatePresence>
         {showModal && (
           <motion.div className="modal-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <motion.div className="glass-card p-6 w-full max-w-lg mx-4 max-h-[85vh] overflow-y-auto"
-              initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
-              style={{ background: '#1f1035' }}>
+            <motion.div className="glass-card" style={{ padding: 28, width: '100%', maxWidth: 540, margin: '0 16px', maxHeight: '85vh', overflowY: 'auto', background: '#1f1035' }}
+              initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}>
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-white font-['Outfit']">{editId ? 'Edit Patient' : 'Add New Patient'}</h2>
                 <button onClick={() => setShowModal(false)} className="p-2 rounded-lg hover:bg-white/5"><X className="w-5 h-5" /></button>
               </div>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
                   <div className="col-span-2">
                     <label className="block text-sm font-medium text-gray-300 mb-1.5">Full Name *</label>
                     <input required className="input-field" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
